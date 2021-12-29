@@ -28,6 +28,16 @@ void run_with_len(struct AES_ctx ctx, uint8_t in[][16], int len)
         AES_ECB_encrypt(&ctx, in[i]);
 }
 
+void blackbox(uint8_t in[], int op_num){
+    float alpha = 0.5;
+    float beta = 0.5;
+    for (int i = 0; i < op_num; i++)
+    {
+        beta = beta*in[1]+alpha;
+    }
+    in[1] = beta;
+}
+
 int main(int argc, char **argv)
 {
 
@@ -103,7 +113,8 @@ int main(int argc, char **argv)
     for (int i = 0; i < op_per_byte; i++)
     {
         // beta = beta*A[1]+alpha;
-        gamma = gamma+in[1]-eta;
+        // gamma = gamma+in[1]-eta;
+        blackbox(in, 3);
         
     }
     printf("gamma:%d\n", gamma);
