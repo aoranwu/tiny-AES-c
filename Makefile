@@ -35,6 +35,10 @@ get_roofline.o : get_roofline.c aes.h aes.o
 	echo [CC] $@ $(CFLAGS)
 	$(CC) $(CFLAGS) -o  $@ $<
 
+get_std_roofline.o : get_std_roofline.c aes.h aes.o
+	echo [CC] $@ $(CFLAGS)
+	$(CC) $(CFLAGS) -o  $@ $<
+
 test.o : test.c aes.h aes.o
 	echo [CC] $@ $(CFLAGS)
 	$(CC) $(CFLAGS) -o  $@ $<
@@ -51,6 +55,10 @@ get_roofline : aes.o get_roofline.o
 	echo [LD] $@
 	$(LD) $(LDFLAGS) -o $@ $^
 
+get_std_roofline : aes.o get_std_roofline.o
+	echo [LD] $@
+	$(LD) $(LDFLAGS) -o $@ $^
+
 aes.a : aes.o
 	echo [AR] $@
 	$(AR) $(ARFLAGS) $@ $^
@@ -58,6 +66,8 @@ aes.a : aes.o
 lib : aes.a
 
 roofline: get_roofline
+
+std_roofline: get_std_roofline
 
 
 clean:
