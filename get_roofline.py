@@ -5,8 +5,8 @@ op_per_byte = 1 # more accurately, op per block
 repeated = 100
 block_num = 8 # one block is 16B
 platform = "server"
-res = [['op_per_byte', 'op_per_second']]
 for block_num in [1,4,8]:
+    res = [['op_per_byte', 'op_per_second']]
     output_filename = "roofline_"+platform+"_"+str(block_num)+".csv"
     for op_per_byte in list(range(1, 200)) + [300, 400, 500, 1000, 5000, 10000, 50000, 100000]:
     # for op_per_byte in [1, 10, 100, 1000, 10000, 100000, 1000000]:
