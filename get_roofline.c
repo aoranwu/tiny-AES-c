@@ -80,11 +80,11 @@ int main(int argc, char **argv)
     gettimeofday(&t2, NULL);
     float msec = (1.0 * difference * 1000) / CLOCKS_PER_SEC;
     printf("op_per_byte:%d\n", op_per_byte);
-    printf("Time elapsed:%f s\n", msec/1000);
+    // printf("Time elapsed:%f s\n", msec/1000);
     elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0;      // sec to ms
     elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
-    printf("%f s.\n", elapsedTime/1000);
-    float op_per_second = (1.0 * op_per_byte) / (1.0 * (msec/1000));
+    // printf("%f s.\n", elapsedTime/1000);
+    float op_per_second = (1.0 * op_per_byte) / (1.0 * (elapsedTime/1000));
     printf("op_per_second:%f\n", op_per_second);
 
     // printf("ECB encrypt: ");
