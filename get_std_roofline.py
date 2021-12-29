@@ -4,7 +4,7 @@ import sys
 op_per_byte = 1 # more accurately, op per block
 repeated = 100
 block_num = 8 # one block is 16B
-platform = "server"
+platform = "stingray"
 
 res = [['flops_per_byte', 'flops_per_second']]
 output_filename = "std_roofline_"+platform+"_int.csv"
