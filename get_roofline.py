@@ -4,7 +4,7 @@ import sys
 op_per_byte = 1 # more accurately, op per block
 repeated = 100
 block_num = 8 # one block is 16B
-platform = "server"
+platform = "stingray"
 res = [['op_per_byte', 'op_per_second']]
 for block_num in [1,4,8]:
     output_filename = "roofline_"+platform+"_"+str(block_num)+".csv"
