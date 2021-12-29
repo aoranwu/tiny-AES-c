@@ -31,6 +31,10 @@ test.hex : test.elf
 	echo copy object-code to new image and format in hex
 	$(OBJCOPY) ${OBJCOPYFLAGS} $< $@
 
+get_roofline.o : get_roofline.c aes.h aes.o
+	echo [CC] $@ $(CFLAGS)
+	$(CC) $(CFLAGS) -o  $@ $<
+
 test.o : test.c aes.h aes.o
 	echo [CC] $@ $(CFLAGS)
 	$(CC) $(CFLAGS) -o  $@ $<
@@ -43,11 +47,18 @@ test.elf : aes.o test.o
 	echo [LD] $@
 	$(LD) $(LDFLAGS) -o $@ $^
 
+get_roofline : aes.o get_roofline.o
+	echo [LD] $@
+	$(LD) $(LDFLAGS) -o $@ $^
+
 aes.a : aes.o
 	echo [AR] $@
 	$(AR) $(ARFLAGS) $@ $^
 
 lib : aes.a
+
+roofline: get_roofline
+
 
 clean:
 	rm -f *.OBJ *.LST *.o *.gch *.out *.hex *.map *.elf *.a
